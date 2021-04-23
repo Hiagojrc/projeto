@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suporte</title>
+    <link rel="icon" type="imagem/png" href="./assets/icone_suporte.png" />
+    <link rel="stylesheet" href="./view/suporte.css">
+</head>
+<body>    
+      <div id="box">
+        <form onsubmit="Thanks()" target="_self">
+              <div>
+              <div>
+                <label>Nome:</label>
+                <input class="input" required type="text" placeholder=" Seu Nome" autocomplete="off">
+            </div>
+            <div>
+              <label>CPF:</label>
+              <input class="input" type="number" min="5" max="99" placeholder="   CPF" autocomplete="off">
+            </div>
+            <div>
+                <label>CRM CASO FOR MÉDICO:</label>
+                <input class="input" type="number" min="5" max="99" placeholder="   CRM" autocomplete="off">
+              </div>
+            <div>
+              <label>Data de Nascimento:</label>
+              <input class="input" required type="date" placeholder="   Data de Nascimento" autocomplete="off">
+            </div>
+              <label>Email:</label>
+              <input class="input" required type="email" placeholder="   Email" autocomplete="off">
+            </div>
+            <div>
+              <label>Problemas Técnicos:</label>
+              <input class="input" required type="text" placeholder="   Escreva seu Problema" autocomplete="off">
+            </div>
+            <div>   
+              <input id="button" type="submit" value="Enviar" onclick="">
+            </div>
+            <div>   
+              <input id="button" type="submit" value="Inicio" onclick="">
+            </div>
+            <h5 id="Obrigado"> </h5>
+        </form>
+      </div>
+      <div>
+        <h6 id="footer">Direitos Autorais <span>@Medique</span> Contate nosso suporte.</h6>
+      </div>
+</body>
+<script src="./view/suporte.js"></script>
+</html>

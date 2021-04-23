@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19</title>
+    <link rel="icon" type="imagem/png" href="./assets/icone_covid.png" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Óbitos", { role: "style" } ],
+        ["Centro Oeste", 30.469, "#FFA07A"],
+        ["Norte", 33.150, "#FA8072"],
+        ["Sul", 49.041, "#E9967A"],
+        ["Nordeste", 70.740, "#FF6347"],
+        ["Sudeste", 148.033, "#B22222"],
+        ["Brasil", 331.531, "#FF0000"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Informações Brasil COVID-19",
+        width: 700,
+        height: 400,
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("grafico"));
+      chart.draw(view, options);
+  }
+  </script>
+</head>
+<body>
+    <div id="grafico" style="width: 400px; height: 200px; cursor:pointer;"></div>
+</body>
+</html>
+
+

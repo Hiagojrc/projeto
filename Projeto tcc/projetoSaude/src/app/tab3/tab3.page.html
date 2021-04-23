@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Suporte
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="col">
+        Email:
+        <input type="text" [(ngModel)]="email" class="form-control" step="0.010"/> 
+    </div>
+    <div class="col">
+        Assunto:
+        <input type="text" [(ngModel)]="att" class="form-control" step="0.010"/> 
+    </div> 
+    <div class="col">
+      Mensagem:
+      <textarea type="text" placeholder="digite sua mensagem aqui" [(ngModel)]="msg" class="form-control"></textarea> 
+  </div> 
+  <div class="text-center" >
+  <br><br>
+  <div class="row">
+ 
+    <ion-button  color="success">Enviar</ion-button>
+    <ion-button  color="danger">Limpar Campos</ion-button>
+  </div>
+  </div>
+</ion-content>
