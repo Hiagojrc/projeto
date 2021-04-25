@@ -28,83 +28,148 @@
 	}
 
 	class UsuarioPDAO {
-		function create($usuarioP) {
-			$result = array();
+		function create($usuarioP){
+			$resultado = array(); 
+			$cpf = $usuarioP->getCpf();
+			$login = $usuarioP->getLogin();
+			$senha = $usuarioP->getSenha();
+		
+            $query = "INSERT INTO usuarios VALUES ($cpf,'$login',md5('$senha')";
+            try{
+                $con = new Conexao();
+                if(Conexao::getInstancia()->exec($query) >= 1){
+                    $resultado = $usuarioP;
+                }else{
+					$resultado["erro"] = "Erro criar usuário Medico";
+				}
+                $con = null;
+            } catch (PDOException $e) {
+                $resultado["erro"] = "Erro ao conectar ao BD";
+            }
+            return $resultado;
+		}
 
-			try {
-				$query = "INSERT INTO table_name (column1, column2) VALUES (value1, value2)";
+		function readAll(){
+			$usuarioP = [];
+			$query = "SELECT * FROM usuarioP";
+			try{
+				$con = new Conexao();
+				$resultSet = Conexao::getInstancia()->query($query);
+				while($linha = $resultSet->fetchObject()){
+					$usuarioP = new usuarioP();
+					$usuarioP->setCpf($linha->cpf);
+					$usuarioP->setLogin($linha->login);
+					$usuarioP->setSenha($linha->senha);
+					$usuarioP[] = $usuarioP;
+				}
+				$con = null;
+			}catch(PDOException $e){
+				$usuarioP["erro"] = "Erro ao conectar ao BD";
+			}
+			return $usuarioP;
+		}
 
-				$con = new Connection();
+		function read($cpf){
+			$usuarioP = [];
+			$query = "SELECT * FROM usuarioP WHERE cpf = $cpf";
+			try{
+				$con = new Conexao();
+				$resultSet = Conexao::getInstancia()->query($query);
+				while($linha = $resultSet->fetchObject()){
+					$usuarioP = new usuarioP();
+					$usuarioP->setCpf($linha->cpf);
+					$usuarioP->setLogin($linha->login);
+					$usuarioP->setSenha($linha->senha);
+					$usuarioP[] = $usuarioP;
+				}
+				$con = null;
+			}catch(PDOException $e){
+				$usuarioP["erro"] = "Erro ao conectar ao BD";
+			}
+			return $usuarioP;
+		}
 
-				if(Connection::getInstance()->exec($query) >= 1){
+		function readLogin($login){//Lista toda a tabela usuários
+			$usuarioP = [];
+			$query = "SELECT * FROM usuarioP WHERE login like '$login%'";
+			try{
+				$con = new Conexao();
+				$resultSet = Conexao::getInstancia()->query($query);//O método query de PDO retorna uma tabela como resultSet
+				while($linha = $resultSet->fetchObject()){
+					$usuarioP = new usuarioP();
+					$usuarioP->setCpf($linha->cpf);
+					$usuarioP->setLogin($linha->login);
+					$usuarioP->setSenha($linha->senha);
+					$usuarioP[] = $usuarioP;
 				}
 
 				$con = null;
-			}catch(PDOException $e) {
-				$result["err"] = $e->getMessage();
+			}catch(PDOException $e){
+				$usuarioP["erro"] = "Erro ao conectar ao BD";
 			}
-
-			return $result;
+			return $usuarioP;
 		}
 
-		function read() {
-			$result = array();
-
-			try {
-				$query = "SELECT column1, column2 FROM table_name WHERE condition";
-
-				$con = new Connection();
-
-				$resultSet = Connection::getInstance()->query($query);
-
-				while($row = $resultSet->fetchObject()){
-				}
-
-				$con = null;
-			}catch(PDOException $e) {
-				$result["err"] = $e->getMessage();
-			}
-
-			return $result;
-		}
-
-		function update() {
-			$result = array();
-
-			try {
-				$query = "UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition";
-
-				$con = new Connection();
-
-				$status = Connection::getInstance()->prepare($query);
-
+		function update($usuarioP){
+			$resultado = [];
+			$login = $usuarioP->getLogin();
+			$senha = $usuarioP->getSenha();
+			$query = "UPDATE usuarioP SET senha = md5('$senha') WHERE login = '$login'";
+			try{
+                $con = new Conexao();
+				$status = Conexao::getInstancia()->prepare($query);
 				if($status->execute()){
+					$resultado[] = $usuarioP;
 				}
-
 				$con = null;
-			}catch(PDOException $e) {
-				$result["err"] = $e->getMessage();
+			}catch(PDOException $e){
+				$resultado["erro"] = "Erro ao conectar ao BD";	
 			}
-
-			return $result;
+			return $resultado;
 		}
 
-		function delete() {
-			$result = array();
-
-			try {
-				$query = "DELETE FROM table_name WHERE condition";
-
-				$con = new Connection();
-
-				if(Connection::getInstance()->exec($query) >= 1){
+		function del($login){
+			$resultado = [];
+			$query = "DELETE FROM usuarioP WHERE login='$login'";
+			try{
+				$con = new Conexao();
+				if(Conexao::getInstancia()->exec($query)>=1){
+					$resultado["msg"] = "Usuário Paciente removido com sucesso";
 				}
-
 				$con = null;
-			}catch(PDOException $e) {
-				$result["err"] = $e->getMessage();
+			}catch(PDOException $e){
+				$resultado["erro"] = "Erro ao conectar ao BD";	
 			}
-
-			return $result;
+			return $resultado;
 		}
+
+		function login($login,$senha){
+			$usuarioP = null;
+			$query = "SELECT * FROM usuarioP WHERE login = '$login'";
+			try{
+				$con = new Conexao();
+				$resultSet = Conexao::getInstancia()->query($query);
+				if($resultSet->fetchObject()){	
+					$query = "SELECT * FROM usuarioP WHERE login = '$login' AND senha = md5('$senha')";
+					$resultSet = Conexao::getInstancia()->query($query);
+					if($dados = $resultSet->fetchObject()){
+						$usuarioP = new usuarioP();
+						$usuarioP->setCpf($dados->cpf);
+						$usuarioP->setLogin($dados->login);
+						$usuarioP->setSenha($dados->senha);
+
+					} else {
+						$usuarioP["erro"] = "A senha informada nao confere";
+					}
+				}else{
+					$usuarioP["erro"] = "Login nao encontrado";	
+				}
+				$con = null;
+			}catch(PDOException $e){
+				$usuarioP["erro"] = "Erro ao conectar ao BD";	
+			}
+			return $usuarioP;
+		}
+
+		
 	}

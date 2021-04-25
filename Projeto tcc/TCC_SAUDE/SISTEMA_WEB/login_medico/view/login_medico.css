@@ -4,6 +4,11 @@ body {
   padding: 40px;
   font-family: "Open Sans Condensed", sans-serif;
   background: url("../assets/fundopaciente.png.jpg") no-repeat center center fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
 }
 
 form {
@@ -52,17 +57,24 @@ form input.pass {
 ::-moz-placeholder { color: #ccc; text-transform: uppercase; }
 :-ms-input-placeholder { color: #ccc; text-transform: uppercase; }
 
-form button[type=button] {
-  width: 248px;
-  margin-bottom: 0;
-  color: #000000;
-  letter-spacing: .05em;
-  text-shadow: 0 1px 0 #000000;
-  text-transform: uppercase;
-  background: #ffffff;
-  border-top-color: #000000;
-  border-left-color: #000000;
-  border-bottom-color: #000000;
-  border-right-color: #000000;
-  cursor: pointer;
+p {
+  max-width: 560px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 2;
+  color: #222;
 }
+
+.button {
+  background: #76B3FA;
+  border-radius: 80px;
+  padding: 10px 30px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0 75px;
+}
+
+

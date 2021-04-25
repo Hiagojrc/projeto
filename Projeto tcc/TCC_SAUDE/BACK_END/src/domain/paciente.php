@@ -64,11 +64,22 @@
 			$result = array();
 
 			try {
-				$query = "INSERT INTO table_name (column1, column2) VALUES (value1, value2)";
+				$query = "INSERT INTO Paciente VALUES(default, '".$paciente->getNome()."', '".$paciente->getCidade()."',
+				 '".$paciente->getTipo_sanguineo()."', '".$paciente->getData_de_nascimento()."', '".$paciente->getTelefone()."',
+				  '".$paciente->getE_mail()."')";
 
 				$con = new Connection();
 
 				if(Connection::getInstance()->exec($query) >= 1){
+					$result["cpf"] = Connection::getInstance()->lastInsertCpf();
+					$result["nome"] = $paciente->getNome();
+					$result["cidade"] = $paciente->getCidade();
+					$result["tipo_sanguineo"] = $paciente->getTipo_sanguineo();
+					$result["data_de_nascimento"] = $paciente->getData_de_nascimento();
+					$result["telefone"] = $paciente->getTelefone();
+					$result["e_mail"] = $paciente->getE_mail();
+				}else{
+					$result["erro"] = "Não foi possivel adicionar um novo paciente";
 				}
 
 				$con = null;
@@ -79,17 +90,25 @@
 			return $result;
 		}
 
-		function read() {
+		function read($cpf) {
 			$result = array();
 
 			try {
-				$query = "SELECT column1, column2 FROM table_name WHERE condition";
-
+				$query = "SELECT * FROM paciente WHERE cpf = $cpf";
 				$con = new Connection();
 
 				$resultSet = Connection::getInstance()->query($query);
-
+				
 				while($row = $resultSet->fetchObject()){
+					$paciente = new Paciente();
+					$paciente->setCpf($row->cpf);
+					$paciente->setNome($row->nome);
+					$paciente->setCidade($row->cidade);
+					$paciente->setTipo_sanguineo($row->tipo_sanguineo);
+					$paciente->setData_de_nascimento($row->data_de_nascimento);
+					$paciente->setTelefone($row->telefone);
+					$paciente->setE_mail($row->e_mail);
+					$result[] = $paciente;
 				}
 
 				$con = null;
@@ -100,17 +119,54 @@
 			return $result;
 		}
 
-		function update() {
+		function readAll() {
 			$result = array();
+			try {
+				$query = "SELECT * FROM paciente";
+				$con = new Connection();
+				
+				$resultSet = Connection::getInstance()->query($query);
+				
+				while($row = $resultSet->fetchObject()){
+					$paciente = new Paciente();
+					$paciente->setCpf($row->cpf);
+					$paciente->setNome($row->nome);
+					$paciente->setCidade($row->cidade);
+					$paciente->setTipo_sanguineo($row->tipo_sanguineo);
+					$paciente->setData_de_nascimento($row->data_de_nascimento);
+					$paciente->setTelefone($row->telefone);
+					$paciente->setE_mail($row->e_mail);
+					$result[] = $paciente;
+				}
+				
+				$con = null;
+			}catch(PDOException $e) {
+				$result["err"] = $e->getMessage();
+			}
+
+			return $result;
+		}
+
+		function update($paci) {
+			$result = array();
+			$cpf = $paci->getCpf();
+			$nome = $paci->getNome();
+			$cidade = $paci->getCidade();
+			$tipo_sanguineo = $paci->getTipo_sanguineo();
+			$data_de_nascimento = $paci->getData_de_nascimento();
+			$telefone = $paci->getTelefone();
+			$e_mail = $paci->getE_mail();
 
 			try {
-				$query = "UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition";
-
+				$query = "UPDATE paciente SET nome = '$nome', paciente = '$cidade', paciente = '$telefone', paciente = '$e_mail' WHERE $cpf";
 				$con = new Connection();
 
 				$status = Connection::getInstance()->prepare($query);
 
 				if($status->execute()){
+					$result = $paci;
+				}else{
+					$result["erro"] = "Não foi possivel atualizar os dados desse paciente!";
 				}
 
 				$con = null;
@@ -125,11 +181,14 @@
 			$result = array();
 
 			try {
-				$query = "DELETE FROM table_name WHERE condition";
+				$query = "DELETE FROM paciente WHERE cpf = $cpf";
 
 				$con = new Connection();
 
 				if(Connection::getInstance()->exec($query) >= 1){
+					$result["msg"] = "Paciente removido com sucesso!";
+				}else{
+					$result["erro"] = "Paciente não removido!";
 				}
 
 				$con = null;
