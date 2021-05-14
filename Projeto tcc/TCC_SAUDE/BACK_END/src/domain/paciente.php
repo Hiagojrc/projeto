@@ -60,35 +60,35 @@
 	}
 
 	class PacienteDAO {
-        function create($paciente) {
-            $result = array();
- 
-            try {
-                $query = "INSERT INTO Paciente VALUES('".$paciente->getCpf()."', '".$paciente->getNome()."', '".$paciente->getCidade()."',
-                 '".$paciente->getTipo_sanguineo()."', '".$paciente->getData_de_nascimento()."', '".$paciente->getTelefone()."',
-                  '".$paciente->getE_mail()."')";
- 
-                $con = new Connection();
- 
-                if(Connection::getInstance()->exec($query) >= 1){
-                    $result["cpf"] = $paciente->getCpf();
-                    $result["nome"] = $paciente->getNome();
-                    $result["cidade"] = $paciente->getCidade();
-                    $result["tipo_sanguineo"] = $paciente->getTipo_sanguineo();
-                    $result["data_de_nascimento"] = $paciente->getData_de_nascimento();
-                    $result["telefone"] = $paciente->getTelefone();
-                    $result["e_mail"] = $paciente->getE_mail();
-                }else{
-                    $result["erro"] = "Não foi possivel adicionar um novo paciente";
-                }
- 
-                $con = null;
-            }catch(PDOException $e) {
-                $result["err"] = $e->getMessage();
-            }
- 
-            return $result;
-        }
+		function create($paciente) {
+			$result = array();
+
+			try {
+				$query = "INSERT INTO Paciente VALUES('".$paciente->getCpf()."', '".$paciente->getNome()."', '".$paciente->getCidade()."',
+				 '".$paciente->getTipo_sanguineo()."', '".$paciente->getData_de_nascimento()."', '".$paciente->getTelefone()."',
+				  '".$paciente->getE_mail()."')";
+
+				$con = new Connection();
+
+				if(Connection::getInstance()->exec($query) >= 1){
+					$result["cpf"] = $paciente->getCpf();
+					$result["nome"] = $paciente->getNome();
+					$result["cidade"] = $paciente->getCidade();
+					$result["tipo_sanguineo"] = $paciente->getTipo_sanguineo();
+					$result["data_de_nascimento"] = $paciente->getData_de_nascimento();
+					$result["telefone"] = $paciente->getTelefone();
+					$result["e_mail"] = $paciente->getE_mail();
+				}else{
+					$result["erro"] = "Não foi possivel adicionar um novo paciente";
+				}
+
+				$con = null;
+			}catch(PDOException $e) {
+				$result["err"] = $e->getMessage();
+			}
+
+			return $result;
+		}
 
 		function read($cpf) {
 			$result = array();
@@ -148,51 +148,51 @@
 		}
 
 		function update($paci) {
-            $result = array();
-            $cpf = $paci->getCpf();
-            $nome = $paci->getNome();
-            $cidade = $paci->getCidade();
-            $tipo_sanguineo = $paci->getTipo_sanguineo();
-            $data_de_nascimento = $paci->getData_de_nascimento();
-            $telefone = $paci->getTelefone();
-            $e_mail = $paci->getE_mail();
- 
-            try {
-                $query = "UPDATE paciente SET nome = '$nome', cidade = '$cidade', tipo_sanguineo = '$tipo_sanguineo ', telefone = '$telefone', e_mail = '$e_mail', data_de_nascimento = '$data_de_nascimento' WHERE cpf = '$cpf'";
-                $con = new Connection();
-                $status = Connection::getInstance()->prepare($query);
-                if($status->execute()){
-                    $result = $paci;
-                }else{
-                    $result["erro"] = "Não foi possivel atualizar os dados desse paciente!";
-                }
-                $con = null;
-            }catch(PDOException $e) {
-                $result["err"] = $e->getMessage();
-            }
- 
-            return $result;
-        }
+			$result = array();
+			$cpf = $paci->getCpf();
+			$nome = $paci->getNome();
+			$cidade = $paci->getCidade();
+			$tipo_sanguineo = $paci->getTipo_sanguineo();
+			$data_de_nascimento = $paci->getData_de_nascimento();
+			$telefone = $paci->getTelefone();
+			$e_mail = $paci->getE_mail();
+
+			try {
+				$query = "UPDATE paciente SET nome = '$nome', cidade = '$cidade', tipo_sanguineo = '$tipo_sanguineo ', telefone = '$telefone', e_mail = '$e_mail', data_de_nascimento = '$data_de_nascimento' WHERE cpf = '$cpf'";
+				$con = new Connection();
+				$status = Connection::getInstance()->prepare($query);
+				if($status->execute()){
+					$result = $paci;
+				}else{
+					$result["erro"] = "Não foi possivel atualizar os dados desse paciente!";
+				}
+				$con = null;
+			}catch(PDOException $e) {
+				$result["err"] = $e->getMessage();
+			}
+
+			return $result;
+		}
 
 		function delete($cpf) {
-            $result = array();
- 
-            try {
-                $query = "DELETE FROM paciente WHERE cpf = '$cpf'";
- 
-                $con = new Connection();
- 
-                if(Connection::getInstance()->exec($query) >= 1){
-                    $result["msg"] = "Paciente removido com sucesso!";
-                }else{
-                    $result["erro"] = "Paciente não removido!";
-                }
- 
-                $con = null;
-            }catch(PDOException $e) {
-                $result["err"] = $e->getMessage();
-            }
- 
-            return $result;
-        }
+			$result = array();
+
+			try {
+				$query = "DELETE FROM paciente WHERE cpf = '$cpf'";
+
+				$con = new Connection();
+
+				if(Connection::getInstance()->exec($query) >= 1){
+					$result["msg"] = "Paciente removido com sucesso!";
+				}else{
+					$result["erro"] = "Paciente não removido!";
+				}
+
+				$con = null;
+			}catch(PDOException $e) {
+				$result["err"] = $e->getMessage();
+			}
+
+			return $result;
+		}
 	}
