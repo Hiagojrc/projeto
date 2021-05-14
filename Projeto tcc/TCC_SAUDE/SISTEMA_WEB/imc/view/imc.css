@@ -1,8 +1,10 @@
-@import 'https://fonts.googleapis.com/css?family=Indie+Flower';
+/*@import 'https://fonts.googleapis.com/css?family=Indie+Flower';*/
+
 body {
   background-image: url("../assets/fundo.gif");
   background-size: cover;
-  font-family: 'Indie Flower', cursive;
+  font-family: "Open Sans", "Fira Sans", sans-serif;
+  /*font-family: 'Indie Flower', cursive;*/
 }
 
 #run {
@@ -51,7 +53,7 @@ input[type="button"] {
   margin-top: 5px;
   font-size: 23px;
   border: none;
-  background-color: #000000;
+  background-color: #4b73e0;
   cursor: pointer;
   color: #ffffff;
 }
@@ -84,6 +86,23 @@ input[type="button"] {
 
 #title {
   text-align: center;
-  color: #000000;
+  color: #446df5;
   font-size: 30px;
+}
+
+.botao{
+  font-family: 'Indie Flower', cursive;
+  width: 263px;
+  padding: 0 0 0 15px;
+  margin: 0 auto;
+  display: table;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 3px;
+  margin-top: 5px;
+  font-size: 23px;
+  border: none;
+  background-color: #4b73e0;
+  cursor: pointer;
+  color: #ffffff;
 }

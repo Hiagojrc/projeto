@@ -9,44 +9,120 @@
     <link rel="stylesheet" href="./view/suporte.css">
 </head>
 <body>    
-      <div id="box">
-        <form onsubmit="Thanks()" target="_self">
-              <div>
-              <div>
-                <label>Nome:</label>
-                <input class="input" required type="text" placeholder=" Seu Nome" autocomplete="off">
-            </div>
-            <div>
-              <label>CPF:</label>
-              <input class="input" type="number" min="5" max="99" placeholder="   CPF" autocomplete="off">
-            </div>
-            <div>
-                <label>CRM CASO FOR MÉDICO:</label>
-                <input class="input" type="number" min="5" max="99" placeholder="   CRM" autocomplete="off">
-              </div>
-            <div>
-              <label>Data de Nascimento:</label>
-              <input class="input" required type="date" placeholder="   Data de Nascimento" autocomplete="off">
-            </div>
-              <label>Email:</label>
-              <input class="input" required type="email" placeholder="   Email" autocomplete="off">
-            </div>
-            <div>
-              <label>Problemas Técnicos:</label>
-              <input class="input" required type="text" placeholder="   Escreva seu Problema" autocomplete="off">
-            </div>
-            <div>   
-              <input id="button" type="submit" value="Enviar" onclick="">
-            </div>
-            <div>   
-              <input id="button" type="submit" value="Inicio" onclick="">
-            </div>
-            <h5 id="Obrigado"> </h5>
-        </form>
+  <div class="container">
+    <header class="header">
+      <h1 id="title" class="text-center">Trabalhamos com a Solução!</h1>
+      <p id="description" class="description text-center">
+       Preencha os campos necessários para o atendimento.
+      </p>
+    </header>
+    <form id="survey-form">
+      <div class="form-group">
+        <label id="name-label" for="name">Nome</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="form-control"
+          placeholder="Digite seu nome"
+          required
+        />
       </div>
-      <div>
-        <h6 id="footer">Direitos Autorais <span>@Medique</span> Contate nosso suporte.</h6>
+      <div class="form-group">
+        <label id="email-label" for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="form-control"
+          placeholder="Digite seu Email"
+          required
+        />
       </div>
+      <div class="form-group">
+        <p>Usuário Ou Médico?</p>
+        <select id="dropdown" name="role" class="form-control" required>
+          <option disabled selected value>Nos informe</option>
+          <option value="student">Usuário</option>
+          <option value="job">Médico</option>
+        </select>
+      </div>
+
+  
+      <div class="form-group">
+        <p>
+          Quais são os problemas?
+          <span class="clue">(Marque mais de uma alternativa se preciso)</span>
+        </p>
+  
+        <label
+          ><input
+            name="prefer"
+            value="front-end-projects"
+            type="checkbox"
+            class="input-checkbox"
+          />Usuário não encontrado</label
+        >
+        <label>
+          <input
+            name="prefer"
+            value="back-end-projects"
+            type="checkbox"
+            class="input-checkbox"
+          />Esqueci a senha</label
+        >
+        <label
+          ><input
+            name="prefer"
+            value="data-visualization"
+            type="checkbox"
+            class="input-checkbox"
+          />Minha consulta não está aparecendo</label
+        >
+        <label
+          ><input
+            name="prefer"
+            value="challenges"
+            type="checkbox"
+            class="input-checkbox"
+          />Sistema travou</label
+        >
+        <label
+          ><input
+            name="prefer"
+            value="gitter-help-rooms"
+            type="checkbox"
+            class="input-checkbox"
+          />Não estou conseguindo deslogar</label
+        >
+        <label
+          ><input
+            name="prefer"
+            value="open-source-community"
+            type="checkbox"
+            class="input-checkbox"
+          />Meu IMC não está correspondendo ao valor correto</label
+        >
+      </div>
+  
+      <div class="form-group">
+        <p>Caso não haja seu problema na lista de opções, relate abaixo!</p>
+        <textarea
+          id="comments"
+          class="input-textarea"
+          name="comment"
+          placeholder="Digite seu problema..."
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" id="submit" class="submit-button">Enviar</button>
+        <br>
+        <a href="../tela_inicio/index.html" type="button">Ínicio</a>
+      </div>
+    </form>
+  </div>
+  
 </body>
 <script src="./view/suporte.js"></script>
 </html>

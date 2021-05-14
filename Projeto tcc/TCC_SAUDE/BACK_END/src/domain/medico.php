@@ -71,7 +71,7 @@
 			$e_mail = $medico->getE_mail();
 
 			try {
-				$query = "INSERT INTO medico VALUES(default, $crm, '$nome', '$cidade', $posto_atendimento, '$especialidade','$telefone', '$e_mail')";
+				$query = "INSERT INTO medico VALUES($crm, '$nome', '$cidade', '$posto_atendimento', '$especialidade','$telefone', '$e_mail')";
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){
 					$result = $medico;
@@ -94,7 +94,7 @@
 				$con = new Connection();
 				$resultSet = Connection::getInstance()->query($query);
 				while($row = $resultSet->fetchObject()){
-					$med = new Tbalimentos();
+					$med = new Medico();
 					$med->setCrm($row->crm);
 					$med->setNome($row->nome);
 					$med->setCidade($row->cidade);
@@ -154,7 +154,7 @@
 			$e_mail = $med->getE_mail();
 			
 			try {
-				$query = "UPDATE medico SET nomea = '$nome', cidade = '$cidade', posto_atendimento = '$posto_atendimento', telefone = '$telefone', e_mail = '$e_mail' WHERE crm = $crm";
+				$query = "UPDATE medico SET nome = '$nome', cidade = '$cidade', posto_atendimento = '$posto_atendimento', telefone = '$telefone', e_mail = '$e_mail' WHERE crm = $crm";
 
 				$con = new Connection();
 

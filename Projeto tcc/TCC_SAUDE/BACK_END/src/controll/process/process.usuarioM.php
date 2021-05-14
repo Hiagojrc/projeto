@@ -1,59 +1,65 @@
 <?php
 
-    require("../../domain/connection.php");
-    require("../../domain/usuariom.php");
-	header("Content-type: application/json"); 
-	$ud = new UsuarioDAO();
+require("../../domain/connection.php");
+require("../../domain/usuarioM.php");
+header("Content-type: application/json"); 
 
-	include("putdel.php"); 
-	
-	
-	if(!empty($_GET)){ 
-		
-		if($_GET["crm"]=="0"){
-			if(empty($_GET["login"])){
-				echo json_encode($ud->readAll());
+class UsuarioMProcess {
+
+	var $ud;
+
+	function doGet($arr){
+		$ud = new UsuarioMDAO();
+		$sucess = array();
+
+		if(isset($arr["crm"])){
+			if ($arr["crm"] == "0") {
+				$sucess = $ud->readAll();
 			} else {
-				echo json_encode($ud->readLogin($_GET["login"]));
-			}			
+				$sucess = $ud->read($arr["crm"]);
+			}
+			http_response_code(200);	
 		} else {
-			echo json_encode($ud->read($_GET["crm"]));
+			$sucess["erro"] = "Requisições GET necessitam do campo crm";
 		}
+		echo json_encode($sucess);
 	}
-	
-	if(!empty($_POST)){
-		if(!empty($_POST["crm"])){
-			$usuarioM = new UsuarioM();
-			$usuarioM->setCrm($_POST["crm"]);
-			$usuarioM->setLogin($_POST["login"]);
-			$usuarioM->setSenha($_POST["senha"]);
-			$status = $ud->create($usuarioM);
-			if(is_object($status)){
-				http_response_code(201);
+
+	function doPost($arr){
+		$sucess = array();
+		if(isset($arr["acao"])){
+			switch($arr["acao"]){
+				case "create";
+					$ud = new UsuarioMDAO();
+					$usuarioM = new UsuarioM();
+					$usuarioM->setCrm($arr["crm"]);
+					$usuarioM->setSenha($arr["senha"]);
+					$sucess = $ud->create($usuarioM);
+					http_response_code(200);
+				break;
+				case "update";
+					$ud = new UsuarioMDAO();
+					$usuarioM = new UsuarioM();
+					$usuarioM->setCrm($arr["crm"]);
+					$usuarioM->setSenha($arr["senha"]);
+					$sucess = $ud->update($usuarioM);
+					http_response_code(200);
+				break;
+				case "delete";
+					$ud = new UsuarioMDAO();
+					$sucess = $ud->delete($arr["crm"]);
+					http_response_code(200);
+				break;
+				default;
+					$sucess["erro"] = "O campo acao deve ser preenchido com 'create, update ou delete'";
+					http_response_code(400);
+				break;
 			}
-			echo json_encode($status);
+		}else{
+			$sucess["erro"] = "Este servidor não possui suporte REST FUll, para processar sua requisição POST envie a acao='create, update ou delete'";
+			http_response_code(400);
 		}
-		if(!empty($_POST["login"])&&!empty($_POST["senha"])&&empty($_POST["crm"])){
-			$login = $_POST["login"];
-			$senha = $_POST["senha"];
-			$status = $ud->login($login,$senha);
-			if(is_object($status)){
-				header("location:$urlFront?login=".$status->getLogin().."&crm=".$status->getCrm());
-			} else {
-				header("location:$urlFront?erro=".$status["erro"]);
-			}
-		}
+		echo json_encode($sucess);
 	}
-	
-	if(!empty($_PUT)){ 
-		$usuarioM = new UsuarioM();
-		$usuarioM->setLogin($_PUT["login"]);
-		$usuarioM->setSenha($_PUT["senha"]);
-		echo json_encode($ud->update($usuarioM));
-	}
-	
-	if(!empty($_DELETE)){ 
-		$login = $_DELETE["login"];
-		echo json_encode($ud->del($login));
-	}
+}
 ?>

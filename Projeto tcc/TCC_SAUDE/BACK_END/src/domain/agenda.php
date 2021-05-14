@@ -46,13 +46,49 @@
 	class AgendaDAO {
 		function create($agenda) {
 			$result = array();
+	
+			$medico = $age->getId_medico();
+			$paciente = $age->getId_paciente();
+			$dadahora = $age->getData_hora();
+			$status = $age->getId_status();
+		
+			try {
+				$query = "INSERT INTO agenda (id_medico, id_paciente, data_hora, id_status) VALUES($medico, $paciente, '$dadahora', $status)";
+				
+				$con = new Connection();
+	
+				if(Connection::getInstance()->exec($query) >= 1){
+					$result["id"] = Connection::getInstance()->lastInsertId();
+					$result["status"] = "C001";
+				}else {
+					$result["status"] = "C002";
+				}
+	
+				$con = null;
+				}catch(PDOException $e) {
+					//$result["err"] = $e->getMessage();
+					$result["status"] = "PDO".$e->getCode();
+				}
+	
+				return $result;
+		}
+
+		function readAll() {
+			$result = array();
 
 			try {
-				$query = "INSERT INTO table_name (column1, column2) VALUES (value1, value2)";
+				$query = "SELECT * FROM agenda";
 
 				$con = new Connection();
-
-				if(Connection::getInstance()->exec($query) >= 1){
+				$resultSet = Connection::getInstance()->query($query);
+				while($row = $resultSet->fetchObject()){
+					$age = new Agenda();
+					$age->setId($row->id);
+					$age->setId_medico($row->id_medico);
+					$age->setId_paciente($row->id_paciente);
+					$age->setData_hora($row->data_hora);
+					$age->setId_status($row->id_status);
+					$result[] = $age;
 				}
 
 				$con = null;
@@ -63,17 +99,25 @@
 			return $result;
 		}
 
-		function read() {
+		function read($id) {
 			$result = array();
 
 			try {
-				$query = "SELECT column1, column2 FROM table_name WHERE condition";
+				$query = "SELECT * FROM medico WHERE id = $id";
 
 				$con = new Connection();
 
 				$resultSet = Connection::getInstance()->query($query);
 
 				while($row = $resultSet->fetchObject()){
+					while($row = $resultSet->fetchObject()){
+						$age = new Agenda();
+						$age->setId($row->id);
+						$age->setId_medico($row->id_medico);
+						$age->setId_paciente($row->id_paciente);
+						$age->setData_hora($row->data_hora);
+						$age->setId_status($row->id_status);
+						$result[] = $age;
 				}
 
 				$con = null;
@@ -84,36 +128,60 @@
 			return $result;
 		}
 
-		function update() {
+		function update($age) {
 			$result = array();
 
+			$id = $age->getId();
+			$medico = $age->getId_medico();
+			
+			$dadahora = $age->getData_hora();
+			$status = $age->getId_status();
+
 			try {
-				$query = "UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition";
+				$query = "UPDATE agenda SET 
+						 id_medico = $medico, 
+						 id_paciente = $paciente,
+						 data_hora = '$dadahora',
+						 id_status = $status
+						 WHERE id = $id";
 
 				$con = new Connection();
 
 				$status = Connection::getInstance()->prepare($query);
 
+				//if($status->execute()){
+				//	$result = $age;
+			//	} else {
+				//	$result["erro"] = "Não foi possível atualizar os dados!";
+				//}
+
 				if($status->execute()){
+					$result["status"] = "C001";
+				}else {
+					$result["status"] = "C002";
 				}
 
 				$con = null;
 			}catch(PDOException $e) {
-				$result["err"] = $e->getMessage();
+				//$result["err"] = $e->getMessage();
+				$result["status"] = "PDO".$e->getCode();
 			}
 
 			return $result;
 		}
 
-		function delete() {
+		function delete($id) {
 			$result = array();
 
 			try {
-				$query = "DELETE FROM table_name WHERE condition";
+				$query = "DELETE FROM agenda WHERE id = $id";
 
 				$con = new Connection();
 
 				if(Connection::getInstance()->exec($query) >= 1){
+					$result["msg"] = "Agenda removido com sucesso! ";
+				}else {
+					$result["erro"] = "Falha ao excluir!";
 				}
 
 				$con = null;

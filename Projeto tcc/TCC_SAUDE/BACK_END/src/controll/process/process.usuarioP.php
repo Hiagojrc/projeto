@@ -1,59 +1,66 @@
 <?php
 
     require("../../domain/connection.php");
-    require("../../domain/usuariop.php");
+    require("../../domain/usuarioP.php");
 	header("Content-type: application/json"); 
-	$ud = new UsuarioDAO();
 
-	include("putdel.php"); 
+	class UsuarioPProcess {
+
+		var $ud;
 	
+		function doGet($arr){
+			$ud = new UsuarioPDAO();
+			$sucess = array();
 	
-	if(!empty($_GET)){ 
-		
-		if($_GET["cpf"]=="0"){
-			if(empty($_GET["login"])){
-				echo json_encode($ud->readAll());
+			if(isset($arr["cpf"])){
+				if ($arr["cpf"] == "0") {
+					$sucess = $ud->readAll();
+				} else {
+					$sucess = $ud->read($arr["cpf"]);
+				}
+				http_response_code(200);	
 			} else {
-				echo json_encode($ud->readLogin($_GET["login"]));
-			}			
-		} else {
-			echo json_encode($ud->read($_GET["cpf"]));
-		}
-	}
-	
-	if(!empty($_POST)){
-		if(!empty($_POST["crm"])){
-			$usuarioP = new UsuarioM();
-			$usuarioP->setCpf($_POST["cpf"]);
-			$usuarioP->setLogin($_POST["login"]);
-			$usuarioP->setSenha($_POST["senha"]);
-			$status = $ud->create($usuarioM);
-			if(is_object($status)){
-				http_response_code(201);
+				$sucess["erro"] = "Requisições GET necessitam do campo cpf";
 			}
-			echo json_encode($status);
+			echo json_encode($sucess);
 		}
-		if(!empty($_POST["login"])&&!empty($_POST["senha"])&&empty($_POST["cpf"])){
-			$login = $_POST["login"];
-			$senha = $_POST["senha"];
-			$status = $ud->login($login,$senha);
-			if(is_object($status)){
-				header("location:$urlFront?login=".$status->getLogin()."&cpf=".$status->getCpf());
-			} else {
-				header("location:$urlFront?erro=".$status["erro"]);
+	
+		function doPost($arr){
+			$sucess = array();
+			if(isset($arr["acao"])){
+				switch($arr["acao"]){
+					case "create";
+						$ud = new UsuarioPDAO();
+						$usuarioP = new UsuarioP();
+						$usuarioP->setCpf($arr["cpf"]);
+						$usuarioP->setSenha($arr["senha"]);
+						$sucess = $ud->create($usuarioP);
+						http_response_code(200);
+					break;
+					case "update";
+						$ud = new UsuarioPDAO();
+						$usuarioP = new UsuarioP();
+						$usuarioP->setCpf($arr["cpf"]);
+						$usuarioP->setSenha($arr["senha"]);
+						$sucess = $ud->update($usuarioP);
+						http_response_code(200);
+					break;
+					case "delete";
+						$ud = new UsuarioPDAO();
+						$sucess = $ud->delete($arr["cpf"]);
+						http_response_code(200);
+					break;
+					default;
+						$sucess["erro"] = "O campo acao deve ser preenchido com 'create, update ou delete'";
+						http_response_code(400);
+					break;
+				}
+			}else{
+				$sucess["erro"] = "Este servidor não possui suporte REST FUll, para processar sua requisição POST envie a acao='create, update ou delete'";
+				http_response_code(400);
 			}
+			echo json_encode($sucess);
 		}
 	}
-	
-	if(!empty($_PUT)){ 
-		$usuarioP = new UsuarioM();
-		$usuarioP->setLogin($_PUT["login"]);
-		$usuarioP->setSenha($_PUT["senha"]);
-		echo json_encode($ud->update($usuarioP));
-	}
-	
-	if(!empty($_DELETE)){ 
-		$login = $_DELETE["login"];
-		echo json_encode($ud->del($login));
-	}
+
 ?>

@@ -1,8 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
-
 body {
   padding: 40px;
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Open Sans", "Fira Sans", sans-serif;
   background: url("../assets/fundopaciente.png.jpg") no-repeat center center fixed;
   display: flex;
   flex-direction: row;
@@ -76,5 +74,18 @@ p {
   font-size: 1em;
   margin: 0 75px;
 }
+  
+.botao{
+  background: #76B3FA;
+    border-radius: 80px;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    margin: 0 75px;
+    margin-top: 20px;
+}
+  
+  
 
 

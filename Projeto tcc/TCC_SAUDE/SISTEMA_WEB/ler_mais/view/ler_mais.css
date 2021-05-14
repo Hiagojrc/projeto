@@ -132,7 +132,7 @@
   .article-category-link-name {
     text-decoration: none;
     text-transform: uppercase;
-    color: #c4b27c;
+    color: #2467f7;
   }
   
   .aside-article-title {
@@ -197,7 +197,7 @@
   .aside-title {
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     color: #0f0d0e;
     display: block;
     margin-top: 0;
@@ -208,9 +208,9 @@
   .aside-title::after {
     content: "";
     display: block;
-    width: 66px;
+    width: 206px;
     height: 3px;
-    background-color: #b59f5b;
+    background-color: #006eff;
     margin-left: auto;
     margin-right: auto;
     margin-top: 12px;
@@ -226,7 +226,7 @@
   }
   
   .aside-posts-picture {
-    width: 73px;
+    width: 153px;
   }
   
   .aside-article-header {
@@ -270,7 +270,7 @@
   .button-row {
     width: 56px;
     height: 56px;
-    background-color: #b59f5b;
+    background-color: #2467f7;
     background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/search.svg);
     background-size: 18px;
     background-repeat: no-repeat;
@@ -293,7 +293,7 @@
     width: 278px;
     height: 56px;
     margin-top: 21px;
-    background-color: #b59f5b;
+    background-color: #2467f7;
   }
   
   .button-style {
@@ -360,7 +360,7 @@
   .category-number {
     font-size: 12px;
     font-weight: 700;
-    color: #b59f5b;
+    color:  #2467f7;
     margin-left: 5px;
   }
   
@@ -371,7 +371,7 @@
   .icons-socials {
     padding-bottom: 32px;
     padding-top: 35px;
-    background-color: #f4f7f6;
+    background-color: #000000;
   }
   
   .socials {
@@ -402,23 +402,15 @@
   }
   
   .social-link-twitter {
-    background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/social/004-twitter.svg);
-  }
-  
-  .social-link-pininterest {
-    background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/social/001-pinterest.svg);
+    background-image: url(../assets/twitter.png);
   }
   
   .social-link-facebook {
-    background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/social/002-facebook-logo.svg);
+    background-image: url(../assets/facebook.png);
   }
   
   .social-link-instagram {
-    background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/social/005-instagram.svg);
-  }
-  
-  .social-link-tumblr {
-    background-image: url(https://netology-code.github.io/html-2-diploma/sources/images/social/003-tumblr.svg);
+    background-image: url(../assets/instagram.png);
   }
   
   .copyright {
