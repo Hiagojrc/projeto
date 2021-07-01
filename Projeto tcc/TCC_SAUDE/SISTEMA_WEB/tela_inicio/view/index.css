@@ -138,7 +138,7 @@ body {
 .info{
   width: 1000px;
   position: relative;
-  margin-left:250px;
+  margin-left:140px;
   display: flex;
   justify-content: space-between;
 }

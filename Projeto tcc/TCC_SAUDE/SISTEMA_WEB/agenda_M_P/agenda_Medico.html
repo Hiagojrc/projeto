@@ -6,10 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda Médica</title>
     <link rel="stylesheet" href="./view/agenda_medico.css">
-</head>
-<body>
+    <link rel="icon" type="imagem/png" href="./assets/icone_medico_cima.png" />
+    <link rel="stylesheet" href="./view/areamedica.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  </head>
 
-  
+<body onload="carregaAgenda(),carregaMedico(),carregaPaciente()">
+  <nav class="navbar navbar-expand-custom navbar-mainbg">
+    <img src="./assets/icone_medico.png" alt="some text" width=60 height=50>
+    <a class="navbar-brand navbar-logo" href="../tela_inicio/index.html">MEDIQUE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-bars text-white"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+            <li class="nav-item">
+                <a class="nav-link" href="./calendario/calendario.html"><img src="./assets/gifcalendario.gif" alt="some text" width=30 height=30></i><i class="far fa-calendar-alt"></i>Calendário</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../covid/covid.html"><img src="./assets/iconecovid.png" alt="some text" width=30 height=30><i class="far fa-chart-bar"></i>Covid 19</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../imc/imc.html"><img src="./assets/icone_medico.png" alt="some text" width=30 height=30>&nbsp;<i class="far fa-copy"></i>IMC</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../suporte/suporte.html"><img src="./assets/suporte.png" alt="some text" width=30 height=30>&nbsp;<i class="far fa-copy"></i>Suporte</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+  <table>
+      <thead>
+          <tr>
+              <th colspan="8">Agenda Medica</th>
+          </tr>
+          <tr>
+              <th>Id da Agenda</th>
+              <th>Crm do medico</th>
+              <th>Medico</th>
+              <th>Cpf do Paciente</th>
+              <th>Paciente</th>
+              <th>Especialidade Medica</th>
+              <th>Data de Consulta</th>
+              <th>Hora da Consulta</th>
+              <th>Status da Consulta</th>
+              <th>Ações</th>
+
+          </tr>
+      </thead>
+      <tbody id="servicos"></tbody>
+      </br></br></br></br></br></br></br></br>
+          <tr>
+              <form>
+                  <td><input class="form-control" id="id" type="text" placeholder="ID" disabled="" style="width:50px"></td>
+                  <td><input type="text" placeholder="Crm" id="crm"></td>
+                  <td><input type="text" placeholder="Medico" id="crm"></td>
+                  <td><input type="text" placeholder="Cpf" id="cpf"></td>
+                  <td><input type="text" placeholder="Nome" id="cpf"></td>
+                  <td><input type="text" placeholder="Especialidade" id="especialidade"></td>
+                  <td><input type="date" placeholder="Data" id="data_de_registro"></td>
+                  <td><input type="time" placeholder="Saída" id="saida"></td>
+                  <td>
+                  <select id="valor">
+                      <option  type="text">Confirmado</option>
+                      <option  type="text">Aguardando</option>
+                      <option  type="text">Reagendar</option>
+                      <option  type="text">Cancelada</option>
+                  </select>
+                  </td>
+                 
+                  <!------------------------BOTÃO CRIAR VEÍCULOS------------------>
+                  <td><input type="button" value="Criar" onclick="criaAgenda()"></td>
+
+              </form>
+          </tr>
+  </table>
+      <div class="msg">
+          <p id="mensagem"></p>
+      </div>
+ 
 </body>
     <script src="./view/agenda_medico.js"></script>
 </html>

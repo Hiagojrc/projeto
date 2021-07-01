@@ -1,5 +1,5 @@
 body {
-    padding: 40px;
+    padding: 70px;
     font-family: "Open Sans", "Fira Sans", sans-serif;
     background: url("../assets/fundo_meio.png") no-repeat center center fixed;
     display: flex;
@@ -14,7 +14,7 @@ body {
     width: 250px;
     margin: 0 auto;
     background: rgba(0, 0, 0, 0.3);
-    padding: 70px 22px;
+    padding: 20px 22px;
     border: 1px solid;
     border-top-color: rgba(255,255,255,.4);
     border-left-color: rgba(255,255,255,.4);
@@ -66,7 +66,7 @@ body {
   }
   
   .button {
-    background: #76B3FA;
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
     border-radius: 80px;
     padding: 10px 30px;
     color: #fff;
@@ -75,15 +75,17 @@ body {
     margin: 0 75px;
   }
 .botao{
-  background: #76B3FA;
-    border-radius: 80px;
-    padding: 10px 30px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-    margin: 0 75px;
-    margin-top: 20px;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
+  border-radius: 80px;
+  padding: 10px 30px;
+  color: #fff;
+  font-size: 1em;
+  margin: 0 75px;
+  margin-top: 20px;
 }
-  
+.botao a{
+  text-decoration: none;
+  color: white;
+}
   
   

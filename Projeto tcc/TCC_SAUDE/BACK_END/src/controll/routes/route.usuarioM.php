@@ -8,6 +8,7 @@
 
 	switch($_SERVER['REQUEST_METHOD']) {
 		case "GET":
+			
 			$up->doGet($_GET);
 			break;
 

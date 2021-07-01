@@ -27,13 +27,13 @@
 		
             
             try{
-				$query = "INSERT INTO usuarios VALUES ($cpf, md5('$senha')";
-
+				$query = "INSERT INTO usuarioP VALUES ('$cpf', md5('$senha'))";
+				
                 $con = new Connection();
                 if(Connection::getInstance()->exec($query) >= 1){
                     $result = $usuarioP;
                 }else{
-					$result["erro"] = "Erro criar usuário Medico";
+					$result["erro"] = "Erro criar usuário Paciente";
 				}
                 $con = null;
             } catch (PDOException $e) {
@@ -60,7 +60,7 @@
 			}catch(PDOException $e){
 				$usuarioP["erro"] = "Erro ao conectar ao BD";
 			}
-			return $usuarioP;
+			return $result;
 		}
 
 		function read($cpf){
@@ -102,7 +102,7 @@
 			return $result;
 		}
 
-		function del($cpf){
+		function delete($cpf){
 			$result = [];
 		
 			try{

@@ -11,7 +11,7 @@ class UsuarioMProcess {
 	function doGet($arr){
 		$ud = new UsuarioMDAO();
 		$sucess = array();
-
+		
 		if(isset($arr["crm"])){
 			if ($arr["crm"] == "0") {
 				$sucess = $ud->readAll();

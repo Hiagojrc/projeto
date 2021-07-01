@@ -6,17 +6,17 @@
 
 	class UsuarioPProcess {
 
-		var $ud;
+		var $up;
 	
 		function doGet($arr){
-			$ud = new UsuarioPDAO();
+			$up = new UsuarioPDAO();
 			$sucess = array();
 	
 			if(isset($arr["cpf"])){
 				if ($arr["cpf"] == "0") {
-					$sucess = $ud->readAll();
+					$sucess = $up->readAll();
 				} else {
-					$sucess = $ud->read($arr["cpf"]);
+					$sucess = $up->read($arr["cpf"]);
 				}
 				http_response_code(200);	
 			} else {
@@ -30,24 +30,24 @@
 			if(isset($arr["acao"])){
 				switch($arr["acao"]){
 					case "create";
-						$ud = new UsuarioPDAO();
+						$up = new UsuarioPDAO();
 						$usuarioP = new UsuarioP();
 						$usuarioP->setCpf($arr["cpf"]);
 						$usuarioP->setSenha($arr["senha"]);
-						$sucess = $ud->create($usuarioP);
+						$sucess = $up->create($usuarioP);
 						http_response_code(200);
 					break;
 					case "update";
-						$ud = new UsuarioPDAO();
+						$up = new UsuarioPDAO();
 						$usuarioP = new UsuarioP();
 						$usuarioP->setCpf($arr["cpf"]);
 						$usuarioP->setSenha($arr["senha"]);
-						$sucess = $ud->update($usuarioP);
+						$sucess = $up->update($usuarioP);
 						http_response_code(200);
 					break;
 					case "delete";
-						$ud = new UsuarioPDAO();
-						$sucess = $ud->delete($arr["cpf"]);
+						$up = new UsuarioPDAO();
+						$sucess = $up->delete($arr["cpf"]);
 						http_response_code(200);
 					break;
 					default;

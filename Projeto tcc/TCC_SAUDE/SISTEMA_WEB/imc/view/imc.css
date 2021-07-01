@@ -53,9 +53,9 @@ input[type="button"] {
   margin-top: 5px;
   font-size: 23px;
   border: none;
-  background-color: #4b73e0;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
   cursor: pointer;
-  color: #ffffff;
+  color: #000000;
 }
 
 ::-webkit-input-placeholder {
@@ -86,7 +86,7 @@ input[type="button"] {
 
 #title {
   text-align: center;
-  color: #446df5;
+  color: #000000;
   font-size: 30px;
 }
 
@@ -99,10 +99,14 @@ input[type="button"] {
   font-weight: bold;
   height: 50px;
   border-radius: 3px;
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 23px;
   border: none;
-  background-color: #4b73e0;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
   cursor: pointer;
-  color: #ffffff;
+}
+.botao a{
+  color: rgb(0, 0, 0);
+  margin-left: 90px;
+  text-decoration: none;
 }

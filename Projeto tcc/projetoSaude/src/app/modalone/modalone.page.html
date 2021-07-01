@@ -1,9 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Seu Cardapio Idel é</ion-title>
+  <ion-toolbar> 
+    <ion-buttons  >
+    <ion-button (click)="close()">      
+      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Voltar</ion-title>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="close()">Fechar</ion-button>
+  <br>
+  <p>Pelo seu IMC de <B>{{data.imc.toFixed(2)}}</B> seu os alimentos recomendados pra você são:</p>
+  <div class="aaa">
+  <ul>
+    <li>{{info}}</li>
+    <li>{{info2}}</li>
+    <li>{{info3}}</li>
+    <li>{{info4}}</li>
+    <li>{{info5}}</li>
+    <li>{{info6}}</li>
+    <li>{{info7}}</li>
+    <li>{{info8}}</li>
+    <li>{{info9}}</li>
+  </ul>
+  <p>{{infoExtra}}</p>
+  </div>
+
+      <ion-slides [options]="sliderOpts" zoom>
+       <ion-slide>   
+         <div class="swiper-zoom-container">
+          <h3>Arraste a imagem para o lado e clique nela para dar zoom</h3>
+          <ion-img [src]="img"></ion-img>
+         </div>
+        </ion-slide>
+        <ion-slide>   
+          <div class="swiper-zoom-container">
+            <ion-img [src]="img1"></ion-img>
+          </div>
+         </ion-slide>
+         <ion-slide>   
+          <div class="swiper-zoom-container">
+            <ion-img [src]="img2"></ion-img>
+          </div>
+         </ion-slide>
+         <ion-slide>   
+          <div class="swiper-zoom-container">
+            <ion-img [src]="img3"></ion-img>
+          </div>
+         </ion-slide>  
+         <ion-slide>   
+          <div class="swiper-zoom-container">
+            <ion-img [src]="img4"></ion-img>
+          </div>
+         </ion-slide>   
+         <ion-slide>   
+          <div class="swiper-zoom-container">
+            <ion-img [src]="img5"></ion-img>
+            <h3>Arraste a imagem para o lado e clique nela para dar zoom</h3>
+          </div>
+         </ion-slide> 
+      </ion-slides>
 </ion-content>

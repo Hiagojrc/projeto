@@ -66,7 +66,7 @@ p {
 }
 
 .button {
-  background: #76B3FA;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
   border-radius: 80px;
   padding: 10px 30px;
   color: #fff;
@@ -76,16 +76,18 @@ p {
 }
   
 .botao{
-  background: #76B3FA;
-    border-radius: 80px;
-    padding: 10px 30px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-    margin: 0 75px;
-    margin-top: 20px;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
+  border-radius: 80px;
+  padding: 10px 30px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0 75px;
+  margin-top: 20px;
 }
-  
-  
+.botao a {
+  text-decoration: none;
+  color: white;
+}
 
 

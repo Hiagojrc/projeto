@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalonePage } from '../modalone/modalone.page';
+import { Router,NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -14,10 +15,10 @@ export class Tab1Page {
 
   
   constructor(
-    private modalCtrl: ModalController
-  ){
+    private modalCtrl: ModalController, private router: Router){
     this.imc = 0;
     this.disableButton = true;
+
 
     
   }
@@ -25,8 +26,11 @@ export class Tab1Page {
   async onclick(){
     const modal = await this.modalCtrl.create({
       component: ModalonePage
-    });
-
+    }); 
+    const queryParams = {
+      imc : this.imc
+    }
+    localStorage.setItem("imc", JSON.stringify(queryParams));
     modal.present();
   }
 

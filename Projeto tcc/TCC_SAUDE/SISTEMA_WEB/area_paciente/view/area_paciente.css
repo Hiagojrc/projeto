@@ -2,6 +2,9 @@
 
 body{
 	font-family: "Open Sans", "Fira Sans", sans-serif;
+	background-image: url(../assets/fundomedico.png);
+	background-size: 100% 950px;
+	background-repeat: no-repeat;
 }
 * {
 	margin: 0;
@@ -78,14 +81,7 @@ i {
 	border-top-right-radius: 15px;
 	margin-top: 10px;
 }
-.hori-selector .right,
-.hori-selector .left{
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	background-color: #fff;
-	bottom: 10px;
-}
+
 .hori-selector .right{
 	right: -25px;
 }

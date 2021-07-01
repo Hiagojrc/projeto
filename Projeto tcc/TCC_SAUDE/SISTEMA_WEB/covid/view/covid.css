@@ -4,27 +4,33 @@
  body {
    font-family: 'Open Sans', sans-serif;
    font-weight: 300;
-   line-height: 1.42em;
+ 
    color:#A7A1AE;
-   background-image: url(../assets/fundoteste1.jpg);
+   background-image: url(../assets/pexels-anna-shvets-3846005.jpg);
+   background-size: 100% 1000px;
+   background-repeat: no-repeat;
  }
  
  h1 {
    font-size:7em; 
-   font-weight: 300;
+   font-weight: bold;
    line-height:1em;
    text-align: center;
-   color: #000000;
+   color: #ffffff;
  }
  
  h2 {
+
    font-size:2em; 
-   font-weight: 300;
+   font-weight: bold;
    text-align: center;
    display: block;
    line-height:1em;
    padding-bottom: 2em;
-   color: #000000;
+   color: #ffffff;
+ }
+ h2 a {
+text-decoration: none;
  }
  .container th h1 {
      font-weight: bold;
@@ -97,3 +103,15 @@
  .container td:nth-child(4),
  .container th:nth-child(4) { display: none; }
  }
+ .copyright {
+  margin-top: 77px;
+  text-align: center;
+  margin-bottom: 43px;
+}
+
+.copyright-text {
+  font-size: 12px;
+  color: #000000;
+  font-weight: 700;
+  font-style: normal;
+}

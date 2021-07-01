@@ -25,7 +25,7 @@ create table status_Consulta(
   status varchar (20)
 );
 create table agenda (
-  id integer not null,  
+  id integer not null auto_increment primary key,  
   id_medico integer,
   id_paciente varchar(11),
   data_hora datetime,
@@ -51,7 +51,7 @@ create table usuarioM(
 create table usuarioP(
 	cpf varchar(11) not null,
 	senha varchar(50) not null,
-	constraint fk_usuarioP_paciente foreign key (cpf) references paciente(cpf)
+	constraint fk_usuarioP_paciente foreign key (cpf) references paciente (cpf)
 );
 
 insert into medico values
@@ -85,7 +85,7 @@ insert into usuarioM values
 (845692,md5("Senh@123"));
 
 insert into usuarioP values
-(12365498775,md5("Senh@123")),
+
 (88964523154,md5("Senh@123")),
 (67531225368,md5("Senh@123")),
 (32547861235,md5("Senh@123"));

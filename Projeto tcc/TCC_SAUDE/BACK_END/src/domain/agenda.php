@@ -44,33 +44,28 @@
 	}
 
 	class AgendaDAO {
-		function create($agenda) {
+		function create($age) {
 			$result = array();
-	
 			$medico = $age->getId_medico();
 			$paciente = $age->getId_paciente();
 			$dadahora = $age->getData_hora();
 			$status = $age->getId_status();
 		
 			try {
-				$query = "INSERT INTO agenda (id_medico, id_paciente, data_hora, id_status) VALUES($medico, $paciente, '$dadahora', $status)";
+				$query = "INSERT INTO agenda VALUES(default, $medico, '$paciente', '$dadahora', $status)";
 				
 				$con = new Connection();
-	
 				if(Connection::getInstance()->exec($query) >= 1){
-					$result["id"] = Connection::getInstance()->lastInsertId();
-					$result["status"] = "C001";
-				}else {
-					$result["status"] = "C002";
+					$result = $age;
+				} else {
+					$result["erro"] = "Erro ao cadastrar!";
 				}
-	
 				$con = null;
-				}catch(PDOException $e) {
-					//$result["err"] = $e->getMessage();
-					$result["status"] = "PDO".$e->getCode();
-				}
-	
-				return $result;
+			}catch(PDOException $e) {
+				$result["err"] = $e->getMessage();
+			}
+			return $result;
+				
 		}
 
 		function readAll() {
@@ -80,7 +75,9 @@
 				$query = "SELECT * FROM agenda";
 
 				$con = new Connection();
+
 				$resultSet = Connection::getInstance()->query($query);
+
 				while($row = $resultSet->fetchObject()){
 					$age = new Agenda();
 					$age->setId($row->id);
@@ -103,14 +100,13 @@
 			$result = array();
 
 			try {
-				$query = "SELECT * FROM medico WHERE id = $id";
+				$query = "SELECT * FROM agenda WHERE id = $id";
 
 				$con = new Connection();
 
 				$resultSet = Connection::getInstance()->query($query);
 
 				while($row = $resultSet->fetchObject()){
-					while($row = $resultSet->fetchObject()){
 						$age = new Agenda();
 						$age->setId($row->id);
 						$age->setId_medico($row->id_medico);
@@ -121,7 +117,7 @@
 				}
 
 				$con = null;
-			}catch(PDOException $e) {
+			 }catch(PDOException $e) {
 				$result["err"] = $e->getMessage();
 			}
 
@@ -132,39 +128,24 @@
 			$result = array();
 
 			$id = $age->getId();
-			$medico = $age->getId_medico();
-			
 			$dadahora = $age->getData_hora();
 			$status = $age->getId_status();
 
 			try {
-				$query = "UPDATE agenda SET 
-						 id_medico = $medico, 
-						 id_paciente = $paciente,
-						 data_hora = '$dadahora',
-						 id_status = $status
-						 WHERE id = $id";
-
+				$query = "UPDATE agenda SET  data_hora = '$dadahora', id_status = $status WHERE id = $id";
 				$con = new Connection();
 
 				$status = Connection::getInstance()->prepare($query);
 
-				//if($status->execute()){
-				//	$result = $age;
-			//	} else {
-				//	$result["erro"] = "Não foi possível atualizar os dados!";
-				//}
-
 				if($status->execute()){
-					$result["status"] = "C001";
-				}else {
-					$result["status"] = "C002";
+					$result = $age;
+				} else {
+					$result["erro"] = "Não foi possível atualizar os dados!";
 				}
 
 				$con = null;
 			}catch(PDOException $e) {
-				//$result["err"] = $e->getMessage();
-				$result["status"] = "PDO".$e->getCode();
+				$result["err"] = $e->getMessage();
 			}
 
 			return $result;
