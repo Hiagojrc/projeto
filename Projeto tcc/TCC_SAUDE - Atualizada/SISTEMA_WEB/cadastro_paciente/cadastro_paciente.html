@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./view/cadastro_paciente.css">
+    <title>Login e Cadastro Paciente</title>
+    <link rel="icon" type="imagem/png" href="./assets/icone_cadastro_paciente.png" />
+</head>
+<body>
+    <div class="container right-panel-active">
+        <!-- Cadastro Paciente -->
+        <div class="container__form container--signup">
+            <form action="#" class="form" id="form1">
+                <h2 class="form__title">Cadastrar-se</h2>
+                <input type="number" placeholder="CPF" class="input" />
+                <input type="password" placeholder="Senha" class="input" />
+                <input type="text" placeholder="Nome" class="input" />
+                <input type="text" placeholder="Cidade" class="input" />
+                <input type="text" placeholder="Tipo sanguíneo" class="input" />
+                <input type="date" placeholder="Data de Nascimento" class="input" />
+                <input type="number" placeholder="Telefone" class="input" />
+                <input type="email" placeholder="Email" class="input" />
+                <button class="btn">Cadastrar-se</button>
+            </form>
+        </div>
+
+        <!-- Login Paciente -->
+        <div class="container__form container--signin">
+            <form action="#" class="form" id="form2">
+                <h2 class="form__title">Logar</h2>
+                <input type="email" placeholder="CPF" class="input" />
+                <input type="password" placeholder="SENHA" class="input" />
+                <a href="#" class="link">Esqueceu a senha?</a>
+                <a href="../area_paciente/area_paciente.html" button class="btn">Logar</button></a>
+            </form>
+        </div>
+
+        <!-- Após -->
+        <div class="container__overlay">
+            <div class="overlay">
+                <div class="overlay__panel overlay--left">
+                    <button class="btn" id="signIn">Logar</button>
+                </div>
+                <div class="overlay__panel overlay--right">
+                    <button class="btn" id="signUp">Cadastrar-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./view/cadastro_paciente.js"></script>
+</html>

@@ -1,0 +1,112 @@
+/*@import 'https://fonts.googleapis.com/css?family=Indie+Flower';*/
+
+body {
+  background-image: url("../assets/fundo.gif");
+  background-size: cover;
+  font-family: "Open Sans", "Fira Sans", sans-serif;
+  /*font-family: 'Indie Flower', cursive;*/
+}
+
+#run {
+  position: absolute;
+  top: -269px;
+  left: -623px;
+  z-index: -999;
+  width: 610px;
+  height: 580px;
+  background-image: url("");
+  background-repeat: no-repeat;
+}
+
+#content {
+  padding: 0px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -135px;
+  margin-top: -135px;
+}
+
+input[type='text'] {
+  font-family: 'Indie Flower', cursive;
+  width: 250px;
+  height: 45px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 3px;
+  padding: 0 0 0 15px;
+  font-size: 22px;
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+input[type="button"] {
+  font-family: 'Indie Flower', cursive;
+  width: 263px;
+  padding: 0 0 0 15px;
+  margin: 0 auto;
+  display: table;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 3px;
+  margin-top: 5px;
+  font-size: 23px;
+  border: none;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
+  cursor: pointer;
+  color: #000000;
+}
+
+::-webkit-input-placeholder {
+  color: #ffffff;
+  font-family: 'Indie Flower', cursive;
+}
+
+:-moz-placeholder {
+  color: #ffffff;
+  font-family: 'Indie Flower', cursive;
+}
+
+::-moz-placeholder {
+  color: #ffffff;
+  font-family: 'Indie Flower', cursive;
+}
+
+:-ms-input-placeholder {
+  color: #ffffff;
+  font-family: 'Indie Flower', cursive;
+}
+
+#message {
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+  color: #000000;
+  font-size: 30px;
+}
+
+.botao{
+  font-family: 'Indie Flower', cursive;
+  width: 263px;
+  padding: 0 0 0 15px;
+  margin: 0 auto;
+  display: table;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 3px;
+  margin-top: 15px;
+  font-size: 23px;
+  border: none;
+  background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(0, 217, 255));
+  cursor: pointer;
+}
+.botao a{
+  color: rgb(0, 0, 0);
+  margin-left: 90px;
+  text-decoration: none;
+}
