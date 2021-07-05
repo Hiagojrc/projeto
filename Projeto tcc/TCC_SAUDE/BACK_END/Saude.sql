@@ -98,5 +98,5 @@ select * from validacao;
 select * from usuarioM;
 select * from usuarioP;
 show tables;
-CREATE VIEW vw_agenda as SELECT agenda.*, medico.nome as nomeMedico, medico.especialidade, paciente.nome as nomePaciente   from agenda  INNER JOIN medico  ON agenda.id_medico = medico.crm INNER JOIN paciente  on agenda.id_paciente = paciente.cpf
+CREATE VIEW vw_agenda as SELECT agenda.*, medico.nome as nomeMedico, medico.especialidade, paciente.nome as nomePaciente   from agenda  INNER JOIN medico  ON agenda.id_medico = medico.crm INNER JOIN paciente  on agenda.id_paciente = paciente.cpf;
 
