@@ -21,59 +21,14 @@ function carregaAgenda() {
                 let row = document.createElement("tr");
                 row.innerHTML = `<tr><td>${val.id}</td>`;
                 row.innerHTML += `<td>${val.id_medico}</td>`;
+                row.innerHTML += `<td>${val.nomeMedico}</td>`;
+                row.innerHTML += `<td>${val.especialidade}</td>`;
                 row.innerHTML += `<td>${val.id_paciente}</td>`;
+                row.innerHTML += `<td>${val.nomePaciente}</td>`;
                 row.innerHTML += `<td>${val.data_hora}</td>`;
                 row.innerHTML += `<td>${val.id_status}</td>`;
                 row.innerHTML += `<td style="padding:3px"><button onclick='editAgenda(this)'>Edit</button><button onclick='delAgenda(this)'>Del</button></td></tr>`;
                 tableAgenda.appendChild(row);
-            });
-        }) //Se obteve erro no processo exibe no console do navegador
-        .catch(function (error) {
-            console.error(error.message);
-        });
-}
-
-function carregaMedico() {
-    /*alert("SEJA BEM VINDO");*/
-    fetch(urlAgenda)
-        .then(function (resp) {
-            //Obtem a resposta da URL no formato JSON
-            if (!resp.ok)
-                throw new Error("Erro ao executar requisição: " + resp.status);
-            return resp.json();
-        })
-        .then(function (data) {
-            //Se obteve a resposta explora os dados recebidos
-            data.forEach((val) => {
-                let row = document.createElement("tr");
-                row.innerHTML = `<tr><td>${val.crm}</td>`;
-                row.innerHTML += `<td>${val.nome}</td>`;
-                row.innerHTML += `<td style="padding:3px"><button onclick='editMedico(this)'>Edit</button><button onclick='delAgenda(this)'>Del</button></td></tr>`;
-                tableMedico.appendChild(row);
-            });
-        }) //Se obteve erro no processo exibe no console do navegador
-        .catch(function (error) {
-            console.error(error.message);
-        });
-}
-
-function carregaPaciente() {
-    /*alert("SEJA BEM VINDO");*/
-    fetch(urlAgenda)
-        .then(function (resp) {
-            //Obtem a resposta da URL no formato JSON
-            if (!resp.ok)
-                throw new Error("Erro ao executar requisição: " + resp.status);
-            return resp.json();
-        })
-        .then(function (data) {
-            //Se obteve a resposta explora os dados recebidos
-            data.forEach((val) => {
-                let row = document.createElement("tr");
-                row.innerHTML = `<tr><td>${val.cpf}</td>`;
-                row.innerHTML += `<td>${val.nome}</td>`;
-                row.innerHTML += `<td style="padding:3px"><button onclick='editPaciente(this)'>Edit</button><button onclick='delAgenda(this)'>Del</button></td></tr>`;
-                tablePaciente.appendChild(row);
             });
         }) //Se obteve erro no processo exibe no console do navegador
         .catch(function (error) {

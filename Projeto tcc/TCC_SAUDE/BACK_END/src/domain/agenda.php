@@ -3,7 +3,10 @@
 	class Agenda {
 		var $id;
 		var $id_medico;
+		var $nomeMedico;
+		var $especialidade;
 		var $id_paciente;
+		var $nomePaciente;
 		var $data_hora;
 		var $id_status;
 
@@ -21,11 +24,32 @@
 			$this->id_medico = $id_medico;
 		}
 
+		function getNomeMedico(){
+			return $this->nomeMedico;
+		}
+		function setNomeMedico($nomeMedico){
+			$this->nomeMedico = $nomeMedico;
+		}
+
+		function getEspecialidade(){
+			return $this->especialidade;
+		}
+		function setEspecialidade($especialidade){
+			$this->especialidade = $especialidade;
+		}
+
 		function getId_paciente(){
 			return $this->id_paciente;
 		}
 		function setId_paciente($id_paciente){
 			$this->id_paciente = $id_paciente;
+		}
+
+		function getNomePaciente(){
+			return $this->nomePaciente;
+		}
+		function setNomePaciente($nomePaciente){
+			$this->nomePaciente = $nomePaciente;
 		}
 
 		function getData_hora(){
@@ -82,7 +106,10 @@
 					$age = new Agenda();
 					$age->setId($row->id);
 					$age->setId_medico($row->id_medico);
+					$age->setNomeMedico($row->nomemedico);
+					$age->setEspecialidade($row->especialidade);
 					$age->setId_paciente($row->id_paciente);
+					$age->setNomePaciente($row->nomepaciente);
 					$age->setData_hora($row->data_hora);
 					$age->setId_status($row->id_status);
 					$result[] = $age;
@@ -100,20 +127,23 @@
 			$result = array();
 
 			try {
-				$query = "SELECT * FROM agenda WHERE id = $id";
+				$query = "SELECT * FROM vw_agenda WHERE id = $id";
 
 				$con = new Connection();
 
 				$resultSet = Connection::getInstance()->query($query);
 
 				while($row = $resultSet->fetchObject()){
-						$age = new Agenda();
-						$age->setId($row->id);
-						$age->setId_medico($row->id_medico);
-						$age->setId_paciente($row->id_paciente);
-						$age->setData_hora($row->data_hora);
-						$age->setId_status($row->id_status);
-						$result[] = $age;
+					$age = new Agenda();
+					$age->setId($row->id);
+					$age->setId_medico($row->id_medico);
+					$age->setNomeMedico($row->nomeMedico);
+					$age->setEspecialidade($row->especialidade);
+					$age->setId_paciente($row->id_paciente);
+					$age->setNomePaciente($row->nomePaciente);
+					$age->setData_hora($row->data_hora);
+					$age->setId_status($row->id_status);
+					$result[] = $age;
 				}
 
 				$con = null;
